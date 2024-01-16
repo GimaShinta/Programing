@@ -224,3 +224,45 @@ void GameMainScene::Finalize()
 
 	delete[] enemy;
 }
+
+//現在のシーン情報を取得
+eSceneType GameMainScene::GetNowScene() const
+{
+	return eSceneType::E_MAIN;
+}
+
+//ハイスコアの読み込み
+void GameMainScene::ReadHighScere()
+{
+	RankingData data;
+	data.Initialize();
+
+	high_score = data.GetScore(0);
+
+	data.Finalize();
+}
+
+//当たり判定処理（プレイヤーと敵）
+bool GameMainScene::IsHitCheck(Player* p, Enemy* e)
+{
+	//プレイヤーがバリアを貼っていたら、当たり判定を無視する
+	if (p->IsBarrier())
+	{
+		return jalse;
+	}
+
+	//敵情報が無ければ、当たり判定を無視する
+	if (e == nullptr)
+	{
+		return false;
+	}
+
+	//位置情報の差分を取得
+	Vector2D diff_location = p->GetLocation() - e->GetLocation();
+
+	//当たり判定サイズの大きさを取得
+	Vector2D box_ex = p->GetBoxSize() + e->GetBoxSize();
+
+	//コリジョンデータより位置情報の差分が小さいなら、ヒット判定とする
+	return((fabsf(diff_location.x) < box_ex.x) && (fabsf(diff_location.y) < box_ex.y));
+}
