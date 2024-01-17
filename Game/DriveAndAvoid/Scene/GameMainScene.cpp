@@ -90,7 +90,7 @@ eSceneType GameMainScene::Update()
 			enemy[i]->Update(player->GetSpeed());
 
 			//画面外に行ったら、敵を削除してスコア加算
-			if (enemy{ i }->GetLocation().y >= 640.0f)
+			if (enemy[i]->GetLocation().y >= 640.0f)
 			{
 				enemy_count[enemy[i]->GetType()]++;
 				enemy[i]->Finalize();
@@ -164,7 +164,7 @@ void GameMainScene::Draw() const
 	float fx = 510.0f;
 	float fy = 390.0;
 	DrawFormatString(fx, fy, GetColor(0, 0, 0), "FUEL METER");
-	DrawBoxAA(fx, fy + 20.0f, fx + (player->GetFUel() * 100 / 20000), fy + 40.0f, GetColor(0, 102, 204), TRUE);
+	DrawBoxAA(fx, fy + 20.0f, fx + (player->GetFuel() * 100 / 20000), fy + 40.0f, GetColor(0, 102, 204), TRUE);
 	DrawBoxAA(fx, fy + 20.0f, fx + 100.0f, fy + 40.0f, GetColor(0, 0, 0), FALSE);
 
 	//体力ゲージの描画
@@ -232,7 +232,7 @@ eSceneType GameMainScene::GetNowScene() const
 }
 
 //ハイスコアの読み込み
-void GameMainScene::ReadHighScere()
+void GameMainScene::ReadHighScore()
 {
 	RankingData data;
 	data.Initialize();
@@ -248,7 +248,7 @@ bool GameMainScene::IsHitCheck(Player* p, Enemy* e)
 	//プレイヤーがバリアを貼っていたら、当たり判定を無視する
 	if (p->IsBarrier())
 	{
-		return jalse;
+		return false;
 	}
 
 	//敵情報が無ければ、当たり判定を無視する

@@ -64,7 +64,7 @@ void HelpScene::Finalize()
 }
 
 //Œ»İ‚ÌƒV[ƒ“î•ñ‚ğæ“¾
-eSceneType HelpScene::GetNowScen() const
+eSceneType HelpScene::GetNowScene() const
 {
 	return eSceneType::E_HELP;
 }
