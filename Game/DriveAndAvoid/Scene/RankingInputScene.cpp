@@ -174,7 +174,7 @@ bool RankingInputScene::InputName()
 	//カーソル位置の文字を決定する
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_B))
 	{
-		if (cursor < 2)
+		if (cursor_y < 2)
 		{
 			name[name_num++] = 'a' + cursor_x + (cursor_y * 13);
 			if (name_num == 14)
