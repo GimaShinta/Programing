@@ -5,12 +5,12 @@ Barrier::Barrier() :image(NULL), life_span(1000)
 {
 
 	//画像の読み込み
-	image = LoadGraph("Resource/images/barrier.png");
+	image = LoadGraph("Resource/Images/barrier.png");
 
 	//エラーチェック
 	if (image == -1)
 	{
-		throw("Resource/images/barrier.pngがありません\n");
+		throw("Resource/Images/barrier.pngがありません\n");
 	}
 }
 
@@ -27,7 +27,7 @@ void Barrier::Draw(const Vector2D& location)
 }
 
 //寿命が尽きたか？
-bool Barrier::IsFineshed(float speed)
+bool Barrier::IsFinished(float speed)
 {
 	life_span -= speed;
 	return(life_span <= 0);

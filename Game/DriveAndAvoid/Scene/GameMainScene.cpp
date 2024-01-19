@@ -26,22 +26,22 @@ void GameMainScene::Initialize()
 	ReadHighScore();
 
 	//画像の読み込み
-	back_ground = LoadGraph("Resource/images/back.bmp");
-	barrier_image = LoadGraph("Resource/images/barrier.png");
-	int result = LoadDivGraph("Resource/images/car.bmp", 3, 3, 1, 63, 120, enemy_image);
+	back_ground = LoadGraph("Resource/Images/back.bmp");
+	barrier_image = LoadGraph("Resource/Images/barrier.png");
+	int result = LoadDivGraph("Resource/Images/car.bmp", 3, 3, 1, 63, 120, enemy_image);
 
 	//エラーチェック
 	if (back_ground == -1)
 	{
-		throw("Resource/images/back.bmpがありません\n");
+		throw("Resource/Images/back.bmpがありません\n");
 	}
 	if (result == -1)
 	{
-		throw("Resource/images/car.bmpがありません\n");
+		throw("Resource/Images/car.bmpがありません\n");
 	}
 	if (barrier_image == -1)
 	{
-		throw("Resource/images/barrier.pngがありません\n");
+		throw("Resource/Images/barrier.pngがありません\n");
 	}
 
 	//オブジェクトの生成
@@ -188,12 +188,12 @@ void GameMainScene::Finalize()
 	//リザルトデータの書き込み
 	FILE* fp = nullptr;
 	//ファイルオープン
-	errno_t result = fopen_s(&fp, "Resource/dat/result_data.csv", "w");
+	errno_t result = fopen_s(&fp, "Resource/Dat/result_data.csv", "w");
 
 	//エラーチェック
 	if (result != 0)
 	{
-		throw("Resource/dat/result_data.csvが開けません\n");
+		throw("Resource/Dat/result_data.csvが開けません\n");
 	}
 
 	//スコアを保存

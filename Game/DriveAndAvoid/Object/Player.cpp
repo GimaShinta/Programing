@@ -2,7 +2,7 @@
 #include "../Utility/InputControl.h"
 #include "DxLib.h"
 
-Player::Player() :is_active(false), image(NULL), location(0.0f), box_size(0.0f),angle(0.0f), speed(0.0f), hp(0.0f), fuel(0.0f), barrier_const(0),
+Player::Player() :is_active(false), image(NULL), location(0.0f), box_size(0.0f),angle(0.0f), speed(0.0f), hp(0.0f), fuel(0.0f), barrier_count(0),
 
 barrier(nullptr)
 {
@@ -15,7 +15,7 @@ Player::~Player()
 }
 
 //初期化処理
-void Player::Initialeze()
+void Player::Initialize()
 {
 	is_active = true;
 	location = Vector2D(320.0f, 380.0f);
@@ -24,15 +24,15 @@ void Player::Initialeze()
 	speed = 3.0f;
 	hp = 1000;
 	fuel = 20000;
-	barrier_const = 3;
+	barrier_count = 3;
 
 	//画像の読み込み
-	image = LoadGraph("Resource/images/carlpol.bmp");
+	image = LoadGraph("Resource/Images/car1pol.bmp");
 
 	//エラーチェック
 	if (image == -1)
 	{
-		throw("Resource/images/carlpol/bmpがありません\n");
+		throw("Resource/Images/car1pol/bmpがありません\n");
 	}
 }
 
@@ -66,11 +66,11 @@ void Player::Update()
 	}
 
 	//バリア処理
-	if (InputControl::GetButtonDown(XINPUT_BUTTON_B) && barrier_const > 0)
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_B) && barrier_count > 0)
 	{
 		if (barrier == nullptr)
 		{
-			barrier_const--;
+			barrier_count--;
 			barrier = new Barrier;
 		}
 	}
@@ -156,9 +156,9 @@ float Player::GetHp() const
 }
 
 //バリア枚数取得処理
-int Player::GetBarriarCount() const
+int Player::GetBarrierCount() const
 {
-	return this->barrier_const;
+	return this->barrier_count;
 }
 
 //バリア有効か？を取得
@@ -174,7 +174,7 @@ void Player::Movement()
 	angle = 0.0f;
 
 	//十字移動処理
-	if (InputConrol::GetButton(XINPUT_BUTTON_DPAD_LEFT))
+	if (InputControl::GetButton(XINPUT_BUTTON_DPAD_LEFT))
 	{
 		move += Vector2D(-1.0f, 0.0f);
 		angle = DX_PI_F / 18;

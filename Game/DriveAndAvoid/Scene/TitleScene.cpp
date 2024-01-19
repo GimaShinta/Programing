@@ -16,22 +16,22 @@ TitleScene::~TitleScene()
 void TitleScene::Initialize()
 {
 	//画像の読み込み
-	background_image = LoadGraph("Resource/images/Title.bmp");
-	menu_image = LoadGraph("Resource/images/menu.bmp");
-	cursor_image = LoadGraph("Resource/images/cone.bmp");
+	background_image = LoadGraph("Resource/Images/Title.bmp");
+	menu_image = LoadGraph("Resource/Images/menu.bmp");
+	cursor_image = LoadGraph("Resource/Images/cone.bmp");
 
 	//エラーチェック
 	if (background_image == -1)
 	{
-		throw("Resource/images/Title.bmpがありません\n");
+		throw("Resource/Images/Title.bmpがありません\n");
 	}
 	if (menu_image == -1)
 	{
-		throw("Resource/images/menu_bmpがありません\n");
+		throw("Resource/Images/menu_bmpがありません\n");
 	}
 	if (cursor_image == -1)
 	{
-		throw("Resource/images/cone.bmpがありません\n");
+		throw("Resource/Images/cone.bmpがありません\n");
 	}
 }
 
