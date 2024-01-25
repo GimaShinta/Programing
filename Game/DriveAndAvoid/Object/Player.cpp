@@ -2,9 +2,7 @@
 #include "../Utility/InputControl.h"
 #include "DxLib.h"
 
-Player::Player() :is_active(false), image(NULL), location(0.0f), box_size(0.0f),angle(0.0f), speed(0.0f), hp(0.0f), fuel(0.0f), barrier_count(0),
-
-barrier(nullptr)
+Player::Player() :is_active(false), image(NULL), location(0.0f), box_size(0.0f),angle(0.0f), speed(0.0f), hp(0.0f), fuel(0.0f), barrier_count(0),barrier(nullptr)
 {
 
 }
@@ -177,7 +175,7 @@ void Player::Movement()
 	if (InputControl::GetButton(XINPUT_BUTTON_DPAD_LEFT))
 	{
 		move += Vector2D(-1.0f, 0.0f);
-		angle = DX_PI_F / 18;
+		angle = DX_PI_F / -18;
 	}
 	if (InputControl::GetButton(XINPUT_BUTTON_DPAD_RIGHT))
 	{
@@ -207,14 +205,18 @@ void Player::Movement()
 void Player::Acceleration()
 {
 	//LBボタンが押されたら、減速する
-	if (InputControl::GetButtonDown(XINPUT_BUTTON_LEFT_SHOULDER) && speed > 1.0f)
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_LEFT_SHOULDER) && speed > 9.0f)
 	{
-		speed -= 1.0f;
+		speed -= 7.0f;
 	}
 
 	//RBボタンが押されたら、加速する
-	if (InputControl::GetButtonDown(XINPUT_BUTTON_RIGHT_SHOULDER) && speed < 10.0f)
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_RIGHT_SHOULDER) && speed < 4.0f)
 	{
-		speed += 1.0f;
+		if (speed == 1.0f)
+		{
+			speed += 2;
+		}
+		speed += 7.0f;
 	}
 }

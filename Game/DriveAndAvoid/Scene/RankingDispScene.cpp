@@ -2,7 +2,7 @@
 #include "../Utility/InputControl.h"
 #include "DxLib.h"
 
-RankingDispScene::RankingDispScene() :background_image(NULL), ranking(nullptr)
+RankingDispScene::RankingDispScene() : background_image(NULL), ranking(nullptr)
 {
 
 }

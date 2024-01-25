@@ -86,6 +86,7 @@ void RankingInputScene::Draw() const
 	}
 	DrawString(40, 405, "決定", GetColor(255, 255, 255));
 	DrawString(40 + font_size * 2, 405, "消す", GetColor(255, 255, 255));
+	DrawString(40 + font_size * 4, 405, "スペース", GetColor(255, 255, 255));
 
 	//選択文字をフォーカスする
 	if (cursor_y < 4)
@@ -100,9 +101,13 @@ void RankingInputScene::Draw() const
 		{
 			DrawBox(35, 400, 35 + font_size * 2, 400 + font_size, GetColor(255, 255, 255), FALSE);
 		}
+		else if(cursor_x==1)
+		{
+			DrawBox(35 + font_size * 2, 400, 35 + font_size * (2 * 2), 400 + font_size, GetColor(255, 255, 255), FALSE);
+		}
 		else
 		{
-			DrawBox(0, 0, font_size, font_size, GetColor(255, 255, 255), FALSE);
+			DrawBox(35 + font_size * 4, 400, 35 + font_size * (2 * 4), 400 + font_size, GetColor(255, 255, 255), FALSE);
 		}
 	}
 }
@@ -199,9 +204,20 @@ bool RankingInputScene::InputName()
 				name[name_num] = '\0';
 				return true;
 			}
+			else if(cursor_x == 1)
+			{
+				name_num--;
+				name[name_num] = '\0';
+			}
 			else
 			{
-				name[name_num--] = NULL;
+				name[name_num++] = '\0' + cursor_x + (cursor_y * 13);
+				if (name_num == 14)
+				{
+					cursor_x = 0;
+					cursor_y = 4;
+				}
+
 			}
 		}
 	}
